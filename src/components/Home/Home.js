@@ -235,7 +235,9 @@ function Home() {
                       title={title}
                       priority={priority}
                       assigned={assigned}
-                      resolution={resolution}
+                      resolution={
+                        resolution === true ? "Resolved" : "In Progress"
+                      }
                     />
                   );
                 }
