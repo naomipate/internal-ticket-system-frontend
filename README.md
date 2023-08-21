@@ -1,6 +1,7 @@
 # Internal Ticket System
 I created this ticket system with the idea of a system that would be needed for a company to know of bugs in tools that are used by client facing developers. The database includes ideas of bugs in profiles, bugs in loading pages, and bugs in employee "kudo" shopping. The idea of kudos is something I'm borrowing from a job I used to have. When we did well and got good feedback, we also got "kudos" to spend on items only available to employees of the company.
 
+Backend Repo: [Internal Ticket System Backend Repo](https://github.com/naomipate/internal-ticket-system-backend)
 Backend Deploy:[Internal Ticket System Backend](https://internal-ticket-system-backend.onrender.com)
 Frontend Deploy:[Internal Ticket System Frontend](https://internal-ticket-system.netlify.app) currently broken.... 😔
 Trello: [Internal Ticket Suggestion System](https://trello.com/b/6Eet0IjY/internal-ticket-suggestion-system)
