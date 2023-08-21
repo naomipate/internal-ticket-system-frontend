@@ -3,7 +3,7 @@ I created this ticket system with the idea of a system that would be needed for 
 
 Backend Repo: [Internal Ticket System Backend Repo](https://github.com/naomipate/internal-ticket-system-backend)
 Backend Deploy:[Internal Ticket System Backend](https://internal-ticket-system-backend.onrender.com)
-Frontend Deploy:[Internal Ticket System Frontend](https://internal-ticket-system.netlify.app) currently broken.... 😔
+Frontend Deploy:[Internal Ticket System Frontend]((https://internal-ticket-system.netlify.app/)
 Trello: [Internal Ticket Suggestion System](https://trello.com/b/6Eet0IjY/internal-ticket-suggestion-system)
 
 # Getting Started with Create React App
