@@ -13,25 +13,25 @@ async function getAllTickets() {
   }
 }
 
-// async function getTableLength() {
-//   try {
-//     let result = await Axios.get("/tickets/get-log-length");
-//     return result;
-//   } catch (error) {
-//     return error;
-//   }
-// }
+async function getTableLength() {
+  try {
+    let result = await Axios.get("/tickets/get-log-length");
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
 
-// async function getCollection(page, limit) {
-//   try {
-//     let result = await Axios.get(
-//       `/tickets/get-collection?page=${page}&limit=${limit}`
-//     );
-//     return result;
-//   } catch (error) {
-//     return error;
-//   }
-// }
+async function getCollection(page, limit) {
+  try {
+    let result = await Axios.get(
+      `/tickets/get-collection?page=${page}&limit=${limit}`
+    );
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
 
 async function getTicketById(id) {
   try {
@@ -80,11 +80,11 @@ async function searchTicket(term) {
 export {
   API,
   getAllTickets,
-  //getTableLength,
+  getTableLength,
   getTicketById,
   deleteTicketByID,
   createTicket,
   updateTicket,
-  //getCollection,
+  getCollection,
   searchTicket,
 };

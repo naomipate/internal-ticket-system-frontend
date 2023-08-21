@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-//import { getCollection } from "../common/API/API";
+import { getCollection } from "../common/API/API";
 import { getAllTickets } from "../common/API/API";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
-  // PaginationContext,
+  PaginationContext,
   // AlertContext,
   SearchContext,
 } from "../common/context/context";
 
 import Overlay from "../common/overlay/Overlay";
 import TableUnit from "../common/TableUnit/TableUnit";
-// import Pagination from "../Pagination/Pagination";
+import Pagination from "../Pagination/Pagination";
 import SearchBar from "../common/SearchBar/SearchBar";
 
 function Home() {
@@ -22,36 +22,36 @@ function Home() {
   const [searchResults, setSearchResults] = useState([]);
 
   const [searchParams] = useSearchParams();
-  //   const [currentPage, setCurrentPage] = useState(1);
-  //   const [isNextPage, setIsNextPage] = useState(false);
-  //   const [lastIndex, setLastIndex] = useState(1);
-  //   const [firstIndex, setFirstIndex] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isNextPage, setIsNextPage] = useState(false);
+  const [lastIndex, setLastIndex] = useState(1);
+  const [firstIndex, setFirstIndex] = useState(1);
 
-  // console.log(searchParams);
-  // console.log(searchParams.size);
-  // console.log(searchParams.get("page"));
-  // console.log(searchParams.get("limit"));
+  console.log(searchParams);
+  console.log(searchParams.size);
+  console.log(searchParams.get("page"));
+  console.log(searchParams.get("limit"));
   useEffect(() => {}, [isSearching]);
 
-  //   async function checkPagination() {
-  //     if (searchParams.size === 0 || searchParams.size === 1) {
-  //       searchParams.set("page", 1);
-  //       searchParams.set("limit", 20);
+  async function checkPagination() {
+    if (searchParams.size === 0 || searchParams.size === 1) {
+      searchParams.set("page", 1);
+      searchParams.set("limit", 20);
 
-  //       // console.log(searchParams.get("page"));
-  //       // console.log(searchParams.get("limit"));
-  //     }
-  //   }
+      // console.log(searchParams.get("page"));
+      // console.log(searchParams.get("limit"));
+    }
+  }
 
   const [ticketArray, setTicketArray] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  //   const paginationContextValue = {
-  //     currentPage,
-  //     searchParams,
-  //     setCurrentPage,
-  //     setIsNextPage,
-  //   };
+  const paginationContextValue = {
+    currentPage,
+    searchParams,
+    setCurrentPage,
+    setIsNextPage,
+  };
 
   const searchBarContextValue = {
     searchTerm,
@@ -62,11 +62,22 @@ function Home() {
   };
 
   useEffect(() => {
+    checkPagination();
     const fetchTicket = async () => {
       try {
         const response = await getAllTickets();
 
         setTicketArray(response.data);
+        if (isNextPage) {
+          grabTopTen(lastIndex);
+        } else {
+          if (firstIndex <= 1) {
+            grabTopTen();
+            setCurrentPage(1);
+          } else {
+            grabTopTen(firstIndex);
+          }
+        }
       } catch (error) {
         navigate("/404");
       }
@@ -90,24 +101,24 @@ function Home() {
   // }
   //   }, [currentPage]);
 
-  //   async function grabTopTen(page = 1, limit = 20) {
-  //     try {
-  //       setIsLoading(true);
-  //       let result = await getCollection(page, limit);
-  //       console.log(result.data);
-  //       const response = result.data;
-  //       const lastItem = response[response.length - 1];
-  //       const firstItem = response[0];
-  //       setLastIndex(Number(lastItem.id));
-  //       setFirstIndex(Number(firstItem.id) - 20);
-  //       //console.log(lastItem);
+  async function grabTopTen(page = 1, limit = 20) {
+    try {
+      setIsLoading(true);
+      let result = await getCollection(page, limit);
+      console.log(result.data);
+      const response = result.data;
+      const lastItem = response[response.length - 1];
+      const firstItem = response[0];
+      setLastIndex(Number(lastItem.id));
+      setFirstIndex(Number(firstItem.id) - 20);
+      //console.log(lastItem);
 
-  //       setTicketArray(response);
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+      setTicketArray(response);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   /*
   function handleOperations(options) {
@@ -233,9 +244,9 @@ function Home() {
           </table>
         </div>
       </Overlay>
-      {/* <PaginationContext.Provider value={paginationContextValue}>
+      <PaginationContext.Provider value={paginationContextValue}>
         <Pagination />
-      </PaginationContext.Provider> */}
+      </PaginationContext.Provider>
     </div>
   );
 }

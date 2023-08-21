@@ -14,8 +14,8 @@ function SearchBar() {
       setSearchResults([
         {
           id: 0,
-          name: "Empty is not valid search",
-          global_sales: 0.0,
+          title: "Empty is not valid search",
+          date: "YYYY-MM-DD",
         },
       ]);
     } else {
