@@ -52,7 +52,7 @@ function ShowPage() {
             </button>
             <button
               className="btn btn-primary"
-              onClick={() => navigate(`/edit-game/${id}`)}
+              onClick={() => navigate(`/edit-ticket/${id}`)}
             >
               Edit
             </button>
