@@ -31,7 +31,7 @@ function CreateTicket() {
         resolution: false,
         username: "",
       });
-      alert("New Game Created!");
+      alert("New Ticket Created!");
       navigate("/");
     } catch (e) {
       console.log(e);
