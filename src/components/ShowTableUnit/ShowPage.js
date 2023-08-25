@@ -38,9 +38,11 @@ function ShowPage() {
         <div className="card-header">{data.title}</div>
         <div className="card-body">
           <h5 className="card-title">
-            Date: {data.date} | Priority: {data.priority} | Resolved:{" "}
-            {data.resolution}
+            Date: {data.date} | Priority: {data.priority}
           </h5>
+          <p className="card-text">
+            Resolved: {data.resolution === true ? "Resolved" : "In Progress"}
+          </p>
           <p className="card-text">Assigned: {data.assigned}</p>
           <p className="card-text">Description: {data.description}</p>
           <p className="card-text">Username: {data.username}</p>
